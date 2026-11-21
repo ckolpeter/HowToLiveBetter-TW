@@ -1,0 +1,56 @@
+name: 建議新增條目
+description: 建議一條新的建議，並附上可以查證的來源
+title: "[新條目] "
+labels: ["new-item"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        謝謝你的建議！本指南只收有可靠來源的建議：台灣政府官方網站、法規資料庫，或同儕審查期刊論文。不收部落格、新聞或內容農場。
+  - type: input
+    id: chapter
+    attributes:
+      label: 章節
+      description: 屬於哪一章？可以寫中文章名或章節代號（例如 labor、fraud）。
+    validations:
+      required: true
+  - type: input
+    id: title
+    attributes:
+      label: 一句話建議
+      placeholder: 例如：離職前先確認特休沒休完的天數，要求雇主折算工資
+    validations:
+      required: true
+  - type: textarea
+    id: plain
+    attributes:
+      label: 做了能換回什麼
+      description: 用白話說明好處，有具體數字的話請寫上數字和適用年度。
+    validations:
+      required: true
+  - type: textarea
+    id: cost
+    attributes:
+      label: 要花多少錢、時間和力氣
+  - type: textarea
+    id: caveats
+    attributes:
+      label: 不適用或要注意的人
+  - type: textarea
+    id: sources
+    attributes:
+      label: 來源
+      description: 每行一個來源，寫上名稱和網址。請附你打開查證的日期。
+      placeholder: |
+        勞動部：勞動基準法權益簡介 https://www.mol.gov.tw/…（查證日期 2026-11-21）
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: 確認
+      options:
+        - label: 來源是台灣政府官方網站、法規資料庫或同儕審查期刊論文
+          required: true
+        - label: 我同意這則建議的內容以 CC BY 4.0 授權釋出
+          required: true

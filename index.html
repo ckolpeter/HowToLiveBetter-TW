@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>台灣人生 CP 值指南</title>
+<meta name="description" content="每條建議寫明花多少、換回什麼、證據多硬，來源只引台灣政府官方網站、法規資料庫與同儕審查期刊。">
+<style>
+:root {
+  --bg: #f7f6f2; --surface: #ffffff; --text: #1f2328; --muted: #5d6470; --border: #d8d6cf;
+  --accent: #1d5fa8; --warn-bg: #fff4d6; --warn-border: #d9b44a; --chip: #eef0f3;
+  --a: #1f7a4d; --b: #8a5d00; --c: #a13b3b; --draft: #8a4b00; --draft-bg: #fdebd3;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #15171a; --surface: #1e2126; --text: #e6e8eb; --muted: #a3aab4; --border: #343a42;
+    --accent: #6aa6e8; --warn-bg: #3a2f12; --warn-border: #7a6420; --chip: #2a2f36;
+    --a: #5cc48f; --b: #e0b44a; --c: #e08a8a; --draft: #f0b46a; --draft-bg: #3d2a12;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #15171a; --surface: #1e2126; --text: #e6e8eb; --muted: #a3aab4; --border: #343a42;
+  --accent: #6aa6e8; --warn-bg: #3a2f12; --warn-border: #7a6420; --chip: #2a2f36;
+  --a: #5cc48f; --b: #e0b44a; --c: #e08a8a; --draft: #f0b46a; --draft-bg: #3d2a12;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 12px; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font: 16px/1.7 system-ui, -apple-system, "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+}
+a { color: var(--accent); }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+header.top { border-bottom: 1px solid var(--border); background: var(--surface); }
+.bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; padding: 14px 0 6px; }
+h1 { font-size: 1.35rem; margin: 0; }
+.subtitle { color: var(--muted); margin: 0 0 12px; font-size: .95rem; }
+.toggles { display: flex; gap: 6px; }
+button, select, input[type="search"] {
+  font: inherit; color: var(--text); background: var(--surface);
+  border: 1px solid var(--border); border-radius: 8px; padding: 6px 10px;
+}
+button { cursor: pointer; }
+button:hover { border-color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.disclaimer {
+  background: var(--warn-bg); border: 1px solid var(--warn-border); border-radius: 8px;
+  padding: 10px 12px; margin: 16px 0; font-size: .92rem;
+}
+.layout { display: grid; grid-template-columns: 1fr; gap: 20px; }
+@media (min-width: 900px) {
+  .layout { grid-template-columns: 260px 1fr; align-items: start; }
+  nav.toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); overflow: auto; }
+}
+nav.toc { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 2px 12px; font-size: .92rem; }
+nav.toc details[open] { padding-bottom: 10px; }
+nav.toc summary { cursor: pointer; font-weight: 600; padding: 6px 0; }
+nav.toc ul { list-style: none; margin: 0; padding: 0; }
+nav.toc .g { color: var(--muted); font-size: .8rem; margin: 10px 0 2px; font-weight: 600; letter-spacing: .02em; }
+nav.toc button.ch {
+  display: flex; width: 100%; justify-content: space-between; gap: 6px; text-align: left;
+  border: 0; background: none; padding: 3px 6px; border-radius: 6px; line-height: 1.5;
+}
+nav.toc button.ch:hover { background: var(--chip); }
+nav.toc button.ch[aria-current="true"] { background: var(--chip); font-weight: 700; }
+nav.toc .n { color: var(--muted); font-size: .78rem; white-space: nowrap; }
+.filters { display: grid; gap: 8px; margin: 0 0 8px; }
+.filters .row { display: flex; flex-wrap: wrap; gap: 8px; }
+.filters label { display: flex; flex-direction: column; font-size: .85rem; color: var(--muted); flex: 1 1 150px; }
+.filters select, .filters input { width: 100%; margin-top: 2px; }
+.status-line { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; margin: 4px 0 12px; }
+.count { color: var(--muted); font-size: .9rem; margin: 0; }
+#reset { font-size: .85rem; padding: 3px 10px; }
+h2.group { font-size: 1.2rem; margin: 26px 0 6px; padding-bottom: 4px; border-bottom: 2px solid var(--border); }
+h2.group:first-child { margin-top: 0; }
+section.chapter { margin: 0 0 18px; }
+h3.chapter-title { font-size: 1.08rem; margin: 14px 0 2px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.intro { color: var(--muted); font-size: .92rem; margin: 0 0 10px; }
+.placeholder {
+  display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline; justify-content: space-between;
+  background: var(--surface); border: 1px dashed var(--border); border-radius: 10px; padding: 8px 14px; margin: 0 0 8px;
+}
+.placeholder .t { font-weight: 600; }
+.waiting { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 4px 0 8px; }
+.waiting-label { color: var(--muted); font-size: .85rem; flex: 1 1 100%; }
+button.ch-chip {
+  display: inline-flex; gap: 6px; align-items: center; font-size: .88rem; padding: 3px 6px 3px 10px;
+  border: 1px dashed var(--border); border-radius: 999px; background: var(--surface);
+}
+.placeholder .intro { margin: 0; flex: 1 1 100%; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; margin: 0 0 14px; }
+.card h4 { font-size: 1.06rem; margin: 6px 0 8px; line-height: 1.5; }
+.meta { display: flex; flex-wrap: wrap; gap: 6px; font-size: .8rem; align-items: center; }
+.chip { background: var(--chip); border-radius: 999px; padding: 1px 10px; font-size: .78rem; font-weight: 500; color: var(--text); }
+.chip.writing { color: var(--draft); background: var(--draft-bg); }
+.chip.pending { color: var(--c); }
+.draft { color: var(--draft); background: var(--draft-bg); border-radius: 999px; padding: 1px 10px; font-weight: 600; }
+.ev { font-weight: 700; border: 1px solid currentColor; border-radius: 999px; padding: 0 9px; }
+.ev-A { color: var(--a); } .ev-B { color: var(--b); } .ev-C { color: var(--c); }
+.id { color: var(--muted); font-family: ui-monospace, Menlo, Consolas, monospace; }
+.plain { font-size: 1.02rem; margin: 6px 0 10px; }
+dl { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: 4px 12px; font-size: .93rem; }
+dt { color: var(--muted); }
+dd { margin: 0; overflow-wrap: anywhere; }
+.section-label { color: var(--muted); font-size: .85rem; margin: 12px 0 2px; }
+.block { margin: 0; font-size: .95rem; }
+.caveats { border-left: 3px solid var(--warn-border); padding-left: 10px; }
+ol.sources { margin: 4px 0 0; padding-left: 1.3em; font-size: .9rem; }
+ol.sources li { margin-bottom: 4px; overflow-wrap: anywhere; }
+.src-meta, .updated { color: var(--muted); font-size: .82rem; }
+.updated { margin: 10px 0 0; }
+.empty { text-align: center; color: var(--muted); padding: 32px 0; }
+.content-note { font-size: .85rem; color: var(--muted); margin: -6px 0 12px; }
+footer { border-top: 1px solid var(--border); margin-top: 28px; padding: 16px 0 32px; font-size: .88rem; color: var(--muted); }
+footer p { margin: 6px 0; }
+@media (max-width: 560px) {
+  dl { grid-template-columns: 1fr; }
+  dt { margin-top: 4px; }
+  .card { padding: 12px; }
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="bar">
+      <h1 data-i18n="title">台灣人生 CP 值指南</h1>
+      <div class="toggles">
+        <button id="lang-btn" type="button" aria-label="Switch language / 切換語言">English</button>
+        <button id="theme-btn" type="button"></button>
+      </div>
+    </div>
+    <p class="subtitle" data-i18n="subtitle">每條建議寫明花多少、換回什麼、證據多硬。來源只引台灣政府官方網站、法規資料庫與同儕審查期刊。</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="disclaimer" role="note">
+    <strong data-i18n="disclaimerTitle">免責聲明：</strong><span data-i18n="disclaimerTop">本指南僅供參考，不構成醫療、法律或財務建議。健康問題請先問醫師；法律與財務的個案請諮詢專業人士。法規與金額會變動，請以來源連結的最新內容為準，並留意每條的查證日期。</span>
+  </div>
+  <p class="content-note" id="content-note" hidden data-i18n="contentNote"></p>
+
+  <div class="layout">
+    <nav class="toc" id="toc" aria-label="章節目錄">
+      <details id="toc-details" open>
+        <summary data-i18n="toc">章節目錄</summary>
+        <div id="toc-body"></div>
+      </details>
+    </nav>
+
+    <main>
+      <section class="filters" id="filters" aria-label="篩選">
+        <label><span data-i18n="search">搜尋</span>
+          <input id="q" type="search" autocomplete="off" data-i18n-placeholder="searchPh" placeholder="輸入關鍵字，例如：加班、165">
+        </label>
+        <div class="row">
+          <label><span data-i18n="evidence">證據等級</span><select id="f-evidence"></select></label>
+          <label><span data-i18n="money">花費</span><select id="f-money"></select></label>
+          <label><span data-i18n="time">時間成本</span><select id="f-time"></select></label>
+        </div>
+      </section>
+      <div class="status-line">
+        <p class="count" id="count" aria-live="polite"></p>
+        <button id="reset" type="button" data-i18n="reset" hidden>清除篩選</button>
+      </div>
+      <div id="list"></div>
+    </main>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p><strong data-i18n="disclaimerTitle">免責聲明：</strong><span data-i18n="disclaimerBottom">本指南僅供參考，不構成醫療、法律或財務建議。內容由志工整理，可能有錯漏或過時，本專案不對依本指南所做的決定負責。發現錯誤請到 GitHub 回報。</span></p>
+    <p data-i18n-html="attribution"></p>
+    <p data-i18n-html="license"></p>
+  </div>
+</footer>
+
+<!-- GUIDE:START -->
+<script id="guide-data" type="application/json">{"groups":[{"id":"health","title":"健康與生命","title_en":"Health and Life","order":1},{"id":"money","title":"錢","title_en":"Money","order":2},{"id":"work","title":"工作與學習","title_en":"Work and Learning","order":3},{"id":"law","title":"法律","title_en":"Law","order":4},{"id":"housing","title":"住","title_en":"Housing","order":5},{"id":"family","title":"家庭","title_en":"Family","order":6},{"id":"living","title":"生活與其他","title_en":"Living and Other","order":7}],"chapters":[{"id":"early-death","title":"不要早死","title_en":"Don't Die Early","intro":"避開最常見、也最能預防的外因死亡與急性致命風險。","order":1,"group":"health","status":"planned"},{"id":"healthy-habits","title":"不要慢慢死","title_en":"Healthy Habits for a Longer Life","intro":"菸、酒、飲食、運動、睡眠這些日常習慣，怎麼改最划算。","order":2,"group":"health","status":"planned"},{"id":"free-health","title":"公費健康資源","title_en":"Free Public Health Services","intro":"政府已經付錢的健檢、癌症篩檢與疫苗，誰能用、幾歲開始、多久一次。","order":3,"group":"health","status":"planned"},{"id":"emergency","title":"緊急情況先做什麼","title_en":"Emergencies: What to Do First","intro":"遇到急症或意外時，前幾分鐘該做什麼、該打哪支電話。","order":4,"group":"health","status":"planned"},{"id":"disaster","title":"地震與天然災害","title_en":"Earthquakes and Natural Disasters","intro":"地震、颱風、淹水來之前怎麼準備，發生當下與事後怎麼做。","order":5,"group":"health","status":"planned"},{"id":"traffic","title":"機車與道路安全","title_en":"Scooter and Road Safety","intro":"騎機車、開車、走路時最容易出事的情境，以及出事後的保險與和解。","order":6,"group":"health","status":"planned"},{"id":"healthcare","title":"看病：少花錢少走彎路","title_en":"Using Healthcare Wisely","intro":"用好健保與醫療制度，少花冤枉錢、少跑冤枉路。","order":7,"group":"health","status":"planned"},{"id":"chronic-illness","title":"得了慢性病之後","title_en":"Living with Chronic Illness","intro":"確診慢性病後，怎麼用照護計畫與按時追蹤，避免併發症。","order":8,"group":"health","status":"planned"},{"id":"medicines","title":"家裡常備藥別吃出事","title_en":"Safe Use of Home Medicines","intro":"成藥與常備藥最常見的吃錯方式，以及怎麼查藥、怎麼丟藥。","order":9,"group":"health","status":"planned"},{"id":"body-image","title":"別為外形把身體搞壞","title_en":"Don't Harm Your Body for Looks","intro":"減重、醫美、健身這些追求外形的做法，哪些會傷身或觸法。","order":10,"group":"health","status":"planned"},{"id":"crisis","title":"遭遇重大打擊之後","title_en":"After a Major Life Crisis","intro":"喪親、重病、失業、離婚之後最危險的時期，以及可以找誰幫忙。","order":11,"group":"health","status":"planned"},{"id":"money","title":"不要浪費錢","title_en":"Don't Waste Money","intro":"借貸、保險、投資、消費最常見的花錢陷阱與消費者權利。","order":12,"group":"money","status":"planned"},{"id":"tax","title":"報稅","title_en":"Filing Your Taxes","intro":"綜所稅與房屋相關稅怎麼報，才不會多繳或被罰。","order":13,"group":"money","status":"planned"},{"id":"pension","title":"勞保、國保與勞退","title_en":"Labor Insurance, National Pension and Retirement","intro":"退休金與社會保險怎麼累積、怎麼領最划算，中斷了怎麼辦。","order":14,"group":"money","status":"planned"},{"id":"broke","title":"沒錢的時候怎麼活","title_en":"When You're Broke","intro":"收入中斷或負債時，可以申請的救助、補貼與合法債務協商。","order":15,"group":"money","status":"planned"},{"id":"fraud","title":"詐騙與 165","title_en":"Scams and the 165 Hotline","intro":"台灣最常見的詐騙手法、被騙後的黃金處理時間，以及別讓自己變成人頭帳戶。","order":16,"group":"money","status":"writing"},{"id":"cybersecurity","title":"帳號與資訊安全","title_en":"Account and Information Security","intro":"保護帳號、手機、銀行卡與個資，被盜或外洩時怎麼處理。","order":17,"group":"money","status":"planned"},{"id":"labor","title":"勞基法、資遣與職災","title_en":"Labor Rights, Severance and Workplace Injury","intro":"受僱者依勞基法該拿到的薪資、休假、資遣費與職災保障，以及權益受損時怎麼爭取。","order":18,"group":"work","status":"writing"},{"id":"skills","title":"學什麼技能划算","title_en":"Which Skills Are Worth Learning","intro":"學歷、證照與職訓的投資報酬，以及有證據支持的學習方法。","order":19,"group":"work","status":"planned"},{"id":"after-18","title":"十八歲之後有哪幾條路","title_en":"Paths After 18","intro":"成年後的兵役、升學、國考與就業選項，各自的門檻與代價。","order":20,"group":"work","status":"planned"},{"id":"business","title":"創業與做生意","title_en":"Starting and Running a Business","intro":"開店、接案、開公司前要辦的登記、稅務與法律責任，別把家底賠進去。","order":21,"group":"work","status":"planned"},{"id":"tech-law","title":"工程師容易踩的紅線","title_en":"Legal Red Lines for Engineers","intro":"寫程式、做網站、接案時容易觸犯的刑事與民事責任。","order":22,"group":"work","status":"planned"},{"id":"legal-safety","title":"別把自己搭進去：法律與財產安全","title_en":"Protecting Yourself Legally","intro":"日常糾紛裡保護自己的法律工具與期限，別因不懂程序而吃虧。","order":23,"group":"law","status":"planned"},{"id":"legal-redlines","title":"普通人容易踩的法律紅線","title_en":"Everyday Legal Red Lines","intro":"一般人可能不知不覺觸犯的刑事與行政罰規定。","order":24,"group":"law","status":"planned"},{"id":"renting","title":"租屋","title_en":"Renting a Home","intro":"租屋前後的契約、押金、補貼與安全，房客和小房東各自的權利義務。","order":25,"group":"housing","status":"planned"},{"id":"home-buying","title":"買房","title_en":"Buying a Home","intro":"買預售屋或成屋前該查的資料、契約重點與貸款稅務。","order":26,"group":"housing","status":"planned"},{"id":"love-marriage","title":"戀愛和結婚","title_en":"Dating and Marriage","intro":"交往、結婚、離婚各階段的健康、財產與安全，以及法律怎麼保障你。","order":27,"group":"family","status":"planned"},{"id":"pregnancy","title":"懷孕和生產","title_en":"Pregnancy and Childbirth","intro":"從備孕到產後，公費產檢、孕期安全與該辦的假和給付。","order":28,"group":"family","status":"planned"},{"id":"newborn","title":"剛出生的孩子怎麼帶","title_en":"Caring for a Newborn","intro":"0–1 歲寶寶最重要的安全、疫苗與餵養重點，以及要立刻就醫的信號。","order":29,"group":"family","status":"planned"},{"id":"school-kids","title":"上學以後的孩子","title_en":"School-Age Children","intro":"學齡兒童與青少年的視力、牙齒、心理與安全，以及校園問題怎麼處理。","order":30,"group":"family","status":"planned"},{"id":"raising-kids","title":"養孩子的錢與時間","title_en":"The Cost of Raising Children","intro":"養孩子可領的津貼、可請的假，以及真實的金錢與時間成本。","order":31,"group":"family","status":"planned"},{"id":"elders","title":"家裡有長輩","title_en":"Caring for Older Family Members","intro":"長輩的法律安排、醫療決定、防詐與健康，在出事前先處理好。","order":32,"group":"family","status":"planned"},{"id":"ltc","title":"長照 2.0","title_en":"Long-Term Care 2.0","intro":"家人失能或失智時，怎麼申請長照服務、能用多少額度、要自付多少。","order":33,"group":"family","status":"planned"},{"id":"disability","title":"身心障礙之後怎麼活","title_en":"Living with Disability","intro":"取得身障證明後可用的補助、就業與教育資源，以及照顧者的支持。","order":34,"group":"family","status":"planned"},{"id":"after-death","title":"人走了以後要辦什麼","title_en":"After a Death in the Family","intro":"家人過世後要辦的證明、登記、給付、遺產與繼承，有哪些期限不能錯過。","order":35,"group":"family","status":"planned"},{"id":"travel","title":"出國旅行與境外安全","title_en":"Travel and Safety Abroad","intro":"出國前、在國外與回國時的安全、醫療、保險與入境規定。","order":36,"group":"living","status":"planned"},{"id":"study-abroad","title":"出國留學","title_en":"Studying Abroad","intro":"出國讀書前後要查的學歷認可、兵役、健保與當地身分規定。","order":37,"group":"living","status":"pending"},{"id":"time-energy","title":"別浪費時間與精力","title_en":"Saving Time and Energy","intro":"睡眠、專注、拖延與辦事效率，把時間和精力花在值得的地方。","order":38,"group":"living","status":"planned"},{"id":"leisure","title":"怎麼放鬆","title_en":"Relaxing Safely","intro":"娛樂場所與戶外活動的安全，以及有證據支持的減壓方式。","order":39,"group":"living","status":"planned"},{"id":"myths","title":"反面清單","title_en":"Things That Look Worth It but Aren't","intro":"看起來划算、但證據不支持或其實有害的常見做法。","order":40,"group":"living","status":"planned"}],"items":[{"id":"fraud-001","chapter":"fraud","title":"接到可疑的電話、訊息或投資邀約，先打 165 反詐騙諮詢專線查證","cost":{"money":"市話撥打免費；手機撥打時中華電信門號免費，其他電信每分鐘新臺幣 1 元（警政署常見問答，更新日期 2022-11-01）","time":"一通電話","effort":"低"},"plain":"覺得不對勁就先打 165 問，不用先確定是詐騙。已經被騙的人也可以直接打 165 報案，或在 165 全民防騙網先填好報案資料，再到派出所完成筆錄。","benefit":"警政署說明（更新日期 2022-11-01）：165 專線可以諮詢、檢舉或報案；也可以在 165 全民防騙網「我要報案」先預製筆錄，由專責人員轉介到民眾方便前往的派出所，接著完成筆錄。官方資料沒有提供「先打 165 能少損失多少錢」的數字，所以這裡不寫。","evidence":"A","caveats":"通話費率是警政署 2022-11-01 的說明，撥打時可能已經變動，以電信公司公告為準。網路預製筆錄之後，仍要到派出所完成手續。被騙之後要不要提告、怎麼追討款項，個案請諮詢律師或法律扶助等專業人士。","sources":[{"title":"內政部警政署常見問答：撥打165反詐騙諮詢專線需要通話費用嗎？受騙報案除可撥打165外，還有其他方式嗎？","url":"https://www.npa.gov.tw/ch/app/faq/view?module=faq&id=2144&serno=A1078837","type":"官方","checked":"2026-11-21"},{"title":"內政部警政署 165 全民防騙網","url":"https://165.npa.gov.tw/","type":"官方","checked":"2026-11-21"}],"status":"draft","updated":"2026-11-21"},{"id":"labor-001","chapter":"labor","title":"加班後可以選補休，但補休到期沒休完，雇主要照加班當天的標準付加班費","cost":{"money":"不花錢","time":"確認公司約定的特休年度和自己的補休紀錄，約 10 分鐘","effort":"低"},"plain":"加班要換補休還是領加班費，要你自己願意、雇主也同意才算，雇主不能片面規定只能補休。補休到期或離職時還沒休完的時數，雇主要換算成加班費付給你。","benefit":"勞動部說明（「加班補休規定」更新日期 2024-12-31；「勞動基準法權益簡介」更新日期 2026-01-01）：平日延長工時前 2 小時加給 1/3 以上，再延長 2 小時加給 2/3 以上；休息日出勤前 2 小時另再加給 1又1/3，第 3 至 8 小時另再加給 1又2/3，第 9 至 12 小時另再加給 2又2/3。補休最晚要在勞雇雙方約定的特別休假年度末日前休完，不能再往後延；沒休完的時數，依加班當天的工資計算標準發給工資。","evidence":"A","caveats":"只適用受勞動基準法保障的勞工，自己的工作適不適用，可以問勞動部或地方勞工局。補休期限以勞雇雙方約定的特休年度為準（曆年制、週年制等）。法令可能修正，以全國法規資料庫的最新條文為準。和雇主有爭議時，個案請諮詢地方勞工局或律師。","sources":[{"title":"勞動部：加班補休規定","url":"https://www.mol.gov.tw/1607/28162/28166/28180/28198/28202/47031/post","type":"官方","checked":"2026-11-21"},{"title":"勞動部：勞動基準法權益簡介","url":"https://www.mol.gov.tw/1607/28162/28166/28168/28170/28989/post","type":"官方","checked":"2026-11-21"}],"status":"draft","updated":"2026-11-21"}]}</script>
+<!-- GUIDE:END -->
+
+<script>
+(function () {
+  "use strict";
+  var DATA = JSON.parse(document.getElementById("guide-data").textContent || "{}");
+  var groups = (DATA.groups || []).slice().sort(function (a, b) { return a.order - b.order; });
+  var chapters = (DATA.chapters || []).slice().sort(function (a, b) { return a.order - b.order; });
+  var items = DATA.items || [];
+  var REPO = "https://github.com/ckolpeter/HowToLiveBetter-TW";
+
+  var I18N = {
+    zh: {
+      title: "台灣人生 CP 值指南",
+      subtitle: "每條建議寫明花多少、換回什麼、證據多硬。來源只引台灣政府官方網站、法規資料庫與同儕審查期刊。",
+      disclaimerTitle: "免責聲明：",
+      disclaimerTop: "本指南僅供參考，不構成醫療、法律或財務建議。健康問題請先問醫師；法律與財務的個案請諮詢專業人士。法規與金額會變動，請以來源連結的最新內容為準，並留意每條的查證日期。",
+      disclaimerBottom: "本指南僅供參考，不構成醫療、法律或財務建議。內容由志工整理，可能有錯漏或過時，本專案不對依本指南所做的決定負責。發現錯誤請到 GitHub 回報。",
+      attribution: '本專案改編自 eternity4719 的《高性价比人生指南》，內容依台灣法規與制度重寫，並非原作者的官方版本。詳見 <a href="' + REPO + '/blob/main/NOTICE.md">NOTICE.md</a>。',
+      license: '內容以 <a href="https://creativecommons.org/licenses/by/4.0/deed.zh-hant">CC BY 4.0</a> 授權，程式碼以 <a href="' + REPO + '/blob/main/LICENSE-CODE">MIT</a> 授權。原始碼與資料：<a href="' + REPO + '">ckolpeter/HowToLiveBetter-TW</a>。',
+      contentNote: "",
+      toc: "章節目錄", allChapters: "全部章節",
+      search: "搜尋", searchPh: "輸入關鍵字，例如：加班、165",
+      evidence: "證據等級", money: "花費", time: "時間成本",
+      all: "全部", free: "不花錢或免費", paid: "可能要花錢",
+      timeShort: "幾分鐘內就能做", timeLong: "要花較多時間",
+      evA: "A：法律、官方制度或大型試驗", evB: "B：觀察性研究、官方統計", evC: "C：專家建議、證據有限",
+      evShort: { A: "證據 A", B: "證據 B", C: "證據 C" },
+      count: function (n, t) { return "顯示 " + n + " 條，共 " + t + " 條"; },
+      reset: "清除篩選",
+      empty: "沒有符合條件的建議。試試換個關鍵字或放寬篩選。",
+      status: { planned: "撰寫中", writing: "撰寫中", done: "完成", pending: "待決定" },
+      noItems: "這一章還沒有內容。",
+      waiting: "還沒有內容的章節（點了可以看簡介）：",
+      draft: "待查核", draftTitle: "草稿：內容尚未經第二人查核",
+      costMoney: "花錢", costTime: "花時間", costEffort: "力氣",
+      effort: { "低": "低", "中": "中", "高": "高" },
+      benefit: "具體數字", caveats: "不適用或要注意的人", sources: "來源",
+      checked: "查證日期", updated: "最後修改", type: { "官方": "官方", "法規": "法規", "期刊": "期刊" },
+      items: function (n) { return n + " 條"; },
+      themeAuto: "主題：自動", themeLight: "主題：淺色", themeDark: "主題：深色",
+      langBtn: "English", filtersLabel: "篩選", tocLabel: "章節目錄"
+    },
+    en: {
+      title: "Taiwan Life Value Guide",
+      subtitle: "Each tip says what it costs, what you get back, and how strong the evidence is. Sources are limited to Taiwan government sites, law databases and peer-reviewed journals.",
+      disclaimerTitle: "Disclaimer: ",
+      disclaimerTop: "For reference only. This is not medical, legal or financial advice. Ask a doctor about health questions, and a professional about your own legal or money situation. Laws and amounts change: follow the linked sources and note each tip's check date.",
+      disclaimerBottom: "For reference only; not medical, legal or financial advice. Written by volunteers, so it may contain errors or be out of date. The project is not responsible for decisions made from it. Please report mistakes on GitHub.",
+      attribution: 'Adapted from HowToLiveBetter by eternity4719 and rewritten for Taiwan\'s laws and systems. Not an official version. See <a href="' + REPO + '/blob/main/NOTICE.md">NOTICE.md</a>.',
+      license: 'Content under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, code under <a href="' + REPO + '/blob/main/LICENSE-CODE">MIT</a>. Source and data: <a href="' + REPO + '">ckolpeter/HowToLiveBetter-TW</a>.',
+      contentNote: "Note: the tips and chapter introductions are written in Traditional Chinese for Taiwan. Only the interface is translated.",
+      toc: "Chapters", allChapters: "All chapters",
+      search: "Search", searchPh: "Type a keyword, e.g. 加班, 165",
+      evidence: "Evidence", money: "Money", time: "Time",
+      all: "All", free: "Free", paid: "May cost money",
+      timeShort: "Takes minutes", timeLong: "Takes longer",
+      evA: "A: law, official program or large trials", evB: "B: observational studies, official statistics", evC: "C: expert opinion, limited evidence",
+      evShort: { A: "Evidence A", B: "Evidence B", C: "Evidence C" },
+      count: function (n, t) { return "Showing " + n + " of " + t + " tips"; },
+      reset: "Clear filters",
+      empty: "No tips match. Try another keyword or fewer filters.",
+      status: { planned: "In progress", writing: "In progress", done: "Done", pending: "Undecided" },
+      noItems: "No tips in this chapter yet.",
+      waiting: "Chapters without tips yet (tap to see the introduction):",
+      draft: "Not yet reviewed", draftTitle: "Draft: not yet checked by a second person",
+      costMoney: "Money", costTime: "Time", costEffort: "Effort",
+      effort: { "低": "Low", "中": "Medium", "高": "High" },
+      benefit: "Numbers", caveats: "Who should be careful", sources: "Sources",
+      checked: "Checked", updated: "Last edited", type: { "官方": "Official", "法規": "Law", "期刊": "Journal" },
+      items: function (n) { return n + (n === 1 ? " tip" : " tips"); },
+      themeAuto: "Theme: auto", themeLight: "Theme: light", themeDark: "Theme: dark",
+      langBtn: "中文", filtersLabel: "Filters", tocLabel: "Chapters"
+    }
+  };
+
+  function store(key, value) {
+    try {
+      if (value === undefined) return localStorage.getItem(key);
+      localStorage.setItem(key, value);
+    } catch (e) { return null; }
+    return null;
+  }
+
+  var savedTheme = store("htlb-theme");
+  var state = {
+    lang: store("htlb-lang") === "en" ? "en" : "zh",
+    theme: savedTheme === "light" || savedTheme === "dark" ? savedTheme : "auto",
+    q: "", chapter: "", evidence: "", money: "", time: ""
+  };
+
+  function t(key) { return I18N[state.lang][key]; }
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+  function safeUrl(u) { return /^https:\/\//i.test(u) ? u : "#"; }
+  function name(obj) { return state.lang === "en" ? obj.title_en : obj.title; }
+  function chapterById(id) { for (var i = 0; i < chapters.length; i++) if (chapters[i].id === id) return chapters[i]; return null; }
+  function itemsOf(id) { return items.filter(function (it) { return it.chapter === id; }); }
+
+  // Money and time filters read the free-text cost fields, so they are approximate.
+  function isFree(it) { return /^(不花錢|免費|0\s*元)/.test((it.cost || {}).money || ""); }
+  function isQuick(it) {
+    var s = (it.cost || {}).time || "";
+    if (/\d\s*(小時|天|週|周|個月|年)|[一二三四五六七八九十幾半]\s*(小時|天|週|周|個月|年)|每天|每週|每月|持續|長期/.test(s)) return false;
+    return /秒|分鐘|一通電話|一次/.test(s);
+  }
+
+  function filtersActive() { return !!(state.q.trim() || state.evidence || state.money || state.time); }
+
+  function matches(it) {
+    if (state.chapter && it.chapter !== state.chapter) return false;
+    if (state.evidence && it.evidence !== state.evidence) return false;
+    if (state.money === "free" && !isFree(it)) return false;
+    if (state.money === "paid" && isFree(it)) return false;
+    if (state.time === "short" && !isQuick(it)) return false;
+    if (state.time === "long" && isQuick(it)) return false;
+    var q = state.q.trim().toLowerCase();
+    if (!q) return true;
+    var ch = chapterById(it.chapter) || {};
+    var hay = [it.id, it.title, it.plain, it.benefit, it.caveats, ch.title, ch.title_en,
+      (it.cost || {}).money, (it.cost || {}).time]
+      .concat((it.sources || []).map(function (s) { return s.title; })).join(" ").toLowerCase();
+    return q.split(/\s+/).every(function (w) { return hay.indexOf(w) >= 0; });
+  }
+
+  function statusChip(ch, count) {
+    var key = count === 0 && ch.status !== "pending" ? "writing" : ch.status;
+    if (key === "done") return "";
+    return '<span class="chip ' + (key === "pending" ? "pending" : "writing") + '">' + esc(t("status")[key]) + "</span>";
+  }
+
+  function card(it) {
+    var c = it.cost || {};
+    var srcs = (it.sources || []).map(function (s) {
+      return '<li><a href="' + esc(safeUrl(s.url)) + '" target="_blank" rel="noopener noreferrer">' + esc(s.title) + "</a>" +
+        '<div class="src-meta">' + esc(t("type")[s.type] || s.type) + " · " + esc(t("checked")) + " " + esc(s.checked) + "</div></li>";
+    }).join("");
+    var draft = it.status === "draft" ? '<span class="draft" title="' + esc(t("draftTitle")) + '">' + esc(t("draft")) + "</span>" : "";
+    return '<article class="card" id="' + esc(it.id) + '">' +
+      '<div class="meta"><span class="ev ev-' + esc(it.evidence) + '" title="' + esc(t("ev" + it.evidence)) + '">' + esc(t("evShort")[it.evidence] || it.evidence) + "</span>" +
+      draft + '<span class="id">' + esc(it.id) + "</span></div>" +
+      "<h4>" + esc(it.title) + "</h4>" +
+      '<p class="plain">' + esc(it.plain) + "</p>" +
+      "<dl><dt>" + esc(t("costMoney")) + "</dt><dd>" + esc(c.money) + "</dd>" +
+      "<dt>" + esc(t("costTime")) + "</dt><dd>" + esc(c.time) + "</dd>" +
+      "<dt>" + esc(t("costEffort")) + "</dt><dd>" + esc(t("effort")[c.effort] || c.effort) + "</dd></dl>" +
+      '<p class="section-label">' + esc(t("benefit")) + '</p><p class="block">' + esc(it.benefit) + "</p>" +
+      '<p class="section-label">' + esc(t("caveats")) + '</p><p class="block caveats">' + esc(it.caveats) + "</p>" +
+      '<p class="section-label">' + esc(t("sources")) + '</p><ol class="sources">' + srcs + "</ol>" +
+      '<p class="updated">' + esc(t("updated")) + " " + esc(it.updated) + "</p>" +
+      "</article>";
+  }
+
+  function renderToc() {
+    var html = '<ul><li><button type="button" class="ch" data-ch=""' + (state.chapter ? "" : ' aria-current="true"') + ">" +
+      "<span>" + esc(t("allChapters")) + '</span><span class="n">' + esc(t("items")(items.length)) + "</span></button></li></ul>";
+    groups.forEach(function (g) {
+      html += '<div class="g">' + esc(name(g)) + "</div><ul>";
+      chapters.filter(function (c) { return c.group === g.id; }).forEach(function (c) {
+        var n = itemsOf(c.id).length;
+        var right = n ? t("items")(n) : t("status")[c.status === "pending" ? "pending" : "writing"];
+        html += '<li><button type="button" class="ch" data-ch="' + esc(c.id) + '"' + (state.chapter === c.id ? ' aria-current="true"' : "") + ">" +
+          "<span>" + esc(name(c)) + '</span><span class="n">' + esc(right) + "</span></button></li>";
+      });
+      html += "</ul>";
+    });
+    document.getElementById("toc-body").innerHTML = html;
+  }
+
+  function render() {
+    var shown = items.filter(matches);
+    var active = filtersActive();
+    var html = "";
+    groups.forEach(function (g) {
+      var section = "", waiting = [];
+      chapters.filter(function (c) { return c.group === g.id && (!state.chapter || c.id === state.chapter); }).forEach(function (c) {
+        var all = itemsOf(c.id);
+        var mine = shown.filter(function (it) { return it.chapter === c.id; });
+        if (mine.length) {
+          section += '<section class="chapter" id="ch-' + esc(c.id) + '"><h3 class="chapter-title">' + esc(name(c)) + statusChip(c, all.length) + "</h3>" +
+            '<p class="intro">' + esc(c.intro) + "</p>" + mine.map(card).join("") + "</section>";
+        } else if (state.chapter && all.length === 0) {
+          // A single empty chapter was picked: show its name, status and intro.
+          section += '<div class="placeholder" id="ch-' + esc(c.id) + '"><span class="t">' + esc(name(c)) + "</span>" + statusChip(c, 0) +
+            '<p class="intro">' + esc(c.intro) + " " + esc(t("noItems")) + "</p></div>";
+        } else if (!active && all.length === 0) {
+          waiting.push(c);
+        }
+      });
+      if (waiting.length) {
+        // Chapters without tips yet are listed compactly after the ones that have content.
+        section += '<div class="waiting"><span class="waiting-label">' + esc(t("waiting")) + "</span>" +
+          waiting.map(function (c) {
+            return '<button type="button" class="ch-chip" id="ch-' + esc(c.id) + '" data-ch="' + esc(c.id) + '" title="' + esc(c.intro) + '">' +
+              esc(name(c)) + statusChip(c, 0) + "</button>";
+          }).join("") + "</div>";
+      }
+      if (section) html += '<h2 class="group">' + esc(name(g)) + "</h2>" + section;
+    });
+    document.getElementById("count").textContent = t("count")(shown.length, items.length);
+    document.getElementById("reset").hidden = !(active || state.chapter);
+    document.getElementById("list").innerHTML = html || '<p class="empty">' + esc(t("empty")) + "</p>";
+    renderToc();
+  }
+
+  function fillSelect(id, options, current) {
+    document.getElementById(id).innerHTML = options.map(function (o) {
+      return '<option value="' + esc(o[0]) + '"' + (o[0] === current ? " selected" : "") + ">" + esc(o[1]) + "</option>";
+    }).join("");
+  }
+
+  function applyTheme() {
+    if (state.theme === "auto") document.documentElement.removeAttribute("data-theme");
+    else document.documentElement.setAttribute("data-theme", state.theme);
+    document.getElementById("theme-btn").textContent = t({ auto: "themeAuto", light: "themeLight", dark: "themeDark" }[state.theme]);
+  }
+
+  function applyLang() {
+    document.documentElement.lang = state.lang === "en" ? "en" : "zh-Hant-TW";
+    document.title = t("title");
+    document.querySelectorAll("[data-i18n]").forEach(function (el) { el.textContent = t(el.getAttribute("data-i18n")); });
+    document.querySelectorAll("[data-i18n-html]").forEach(function (el) { el.innerHTML = t(el.getAttribute("data-i18n-html")); });
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(function (el) { el.placeholder = t(el.getAttribute("data-i18n-placeholder")); });
+    document.getElementById("filters").setAttribute("aria-label", t("filtersLabel"));
+    document.getElementById("toc").setAttribute("aria-label", t("tocLabel"));
+    document.getElementById("content-note").hidden = state.lang !== "en";
+    document.getElementById("lang-btn").textContent = t("langBtn");
+    fillSelect("f-evidence", [["", t("all")], ["A", t("evA")], ["B", t("evB")], ["C", t("evC")]], state.evidence);
+    fillSelect("f-money", [["", t("all")], ["free", t("free")], ["paid", t("paid")]], state.money);
+    fillSelect("f-time", [["", t("all")], ["short", t("timeShort")], ["long", t("timeLong")]], state.time);
+    applyTheme();
+    render();
+  }
+
+  // On narrow screens start with the chapter list folded so tips are visible first.
+  if (window.matchMedia && window.matchMedia("(max-width: 899px)").matches) {
+    document.getElementById("toc-details").open = false;
+  }
+
+  document.getElementById("toc-body").addEventListener("click", function (e) {
+    var b = e.target.closest("button.ch");
+    if (!b) return;
+    state.chapter = b.getAttribute("data-ch");
+    render();
+    if (window.matchMedia && window.matchMedia("(max-width: 899px)").matches) document.getElementById("toc-details").open = false;
+    document.getElementById("filters").scrollIntoView({ block: "start" });
+  });
+  document.getElementById("list").addEventListener("click", function (e) {
+    var b = e.target.closest("button.ch-chip");
+    if (!b) return;
+    state.chapter = b.getAttribute("data-ch");
+    render();
+    document.getElementById("filters").scrollIntoView({ block: "start" });
+  });
+  document.getElementById("q").addEventListener("input", function (e) { state.q = e.target.value; render(); });
+  [["f-evidence", "evidence"], ["f-money", "money"], ["f-time", "time"]].forEach(function (p) {
+    document.getElementById(p[0]).addEventListener("change", function (e) { state[p[1]] = e.target.value; render(); });
+  });
+  document.getElementById("reset").addEventListener("click", function () {
+    state.q = state.evidence = state.money = state.time = state.chapter = "";
+    document.getElementById("q").value = "";
+    applyLang();
+  });
+  document.getElementById("lang-btn").addEventListener("click", function () {
+    state.lang = state.lang === "zh" ? "en" : "zh";
+    store("htlb-lang", state.lang);
+    applyLang();
+  });
+  document.getElementById("theme-btn").addEventListener("click", function () {
+    state.theme = { auto: "light", light: "dark", dark: "auto" }[state.theme];
+    store("htlb-theme", state.theme);
+    applyTheme();
+  });
+
+  applyLang();
+})();
+</script>
+</body>
+</html>

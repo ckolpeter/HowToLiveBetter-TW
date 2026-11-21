@@ -1,0 +1,38 @@
+name: 內容有誤回報
+description: 回報某條建議的錯誤、過時資料或失效連結
+title: "[勘誤] "
+labels: ["correction"]
+body:
+  - type: input
+    id: item
+    attributes:
+      label: 哪一條
+      description: 條目代號，例如 labor-001（顯示在每條卡片上）。
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: 問題類型
+      options:
+        - 內容或數字錯誤
+        - 資料過時（法規修正、金額調整）
+        - 來源連結失效
+        - 用語不是台灣慣用語
+        - 其他
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: 哪裡有問題
+      description: 請引用有問題的文字，並說明應該怎麼改。
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: 你的依據
+      description: 正確內容的來源名稱與網址（台灣政府官方網站、法規資料庫或同儕審查期刊論文），以及你查證的日期。
+    validations:
+      required: true

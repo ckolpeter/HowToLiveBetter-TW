@@ -1,0 +1,470 @@
+{
+  "groups": [
+    {
+      "id": "health",
+      "title": "健康與生命",
+      "title_en": "Health and Life",
+      "order": 1
+    },
+    {
+      "id": "money",
+      "title": "錢",
+      "title_en": "Money",
+      "order": 2
+    },
+    {
+      "id": "work",
+      "title": "工作與學習",
+      "title_en": "Work and Learning",
+      "order": 3
+    },
+    {
+      "id": "law",
+      "title": "法律",
+      "title_en": "Law",
+      "order": 4
+    },
+    {
+      "id": "housing",
+      "title": "住",
+      "title_en": "Housing",
+      "order": 5
+    },
+    {
+      "id": "family",
+      "title": "家庭",
+      "title_en": "Family",
+      "order": 6
+    },
+    {
+      "id": "living",
+      "title": "生活與其他",
+      "title_en": "Living and Other",
+      "order": 7
+    }
+  ],
+  "chapters": [
+    {
+      "id": "early-death",
+      "title": "不要早死",
+      "title_en": "Don't Die Early",
+      "intro": "避開最常見、也最能預防的外因死亡與急性致命風險。",
+      "order": 1,
+      "group": "health",
+      "status": "planned"
+    },
+    {
+      "id": "healthy-habits",
+      "title": "不要慢慢死",
+      "title_en": "Healthy Habits for a Longer Life",
+      "intro": "菸、酒、飲食、運動、睡眠這些日常習慣，怎麼改最划算。",
+      "order": 2,
+      "group": "health",
+      "status": "planned"
+    },
+    {
+      "id": "free-health",
+      "title": "公費健康資源",
+      "title_en": "Free Public Health Services",
+      "intro": "政府已經付錢的健檢、癌症篩檢與疫苗，誰能用、幾歲開始、多久一次。",
+      "order": 3,
+      "group": "health",
+      "status": "planned"
+    },
+    {
+      "id": "emergency",
+      "title": "緊急情況先做什麼",
+      "title_en": "Emergencies: What to Do First",
+      "intro": "遇到急症或意外時，前幾分鐘該做什麼、該打哪支電話。",
+      "order": 4,
+      "group": "health",
+      "status": "planned"
+    },
+    {
+      "id": "disaster",
+      "title": "地震與天然災害",
+      "title_en": "Earthquakes and Natural Disasters",
+      "intro": "地震、颱風、淹水來之前怎麼準備，發生當下與事後怎麼做。",
+      "order": 5,
+      "group": "health",
+      "status": "planned"
+    },
+    {
+      "id": "traffic",
+      "title": "機車與道路安全",
+      "title_en": "Scooter and Road Safety",
+      "intro": "騎機車、開車、走路時最容易出事的情境，以及出事後的保險與和解。",
+      "order": 6,
+      "group": "health",
+      "status": "planned"
+    },
+    {
+      "id": "healthcare",
+      "title": "看病：少花錢少走彎路",
+      "title_en": "Using Healthcare Wisely",
+      "intro": "用好健保與醫療制度，少花冤枉錢、少跑冤枉路。",
+      "order": 7,
+      "group": "health",
+      "status": "planned"
+    },
+    {
+      "id": "chronic-illness",
+      "title": "得了慢性病之後",
+      "title_en": "Living with Chronic Illness",
+      "intro": "確診慢性病後，怎麼用照護計畫與按時追蹤，避免併發症。",
+      "order": 8,
+      "group": "health",
+      "status": "planned"
+    },
+    {
+      "id": "medicines",
+      "title": "家裡常備藥別吃出事",
+      "title_en": "Safe Use of Home Medicines",
+      "intro": "成藥與常備藥最常見的吃錯方式，以及怎麼查藥、怎麼丟藥。",
+      "order": 9,
+      "group": "health",
+      "status": "planned"
+    },
+    {
+      "id": "body-image",
+      "title": "別為外形把身體搞壞",
+      "title_en": "Don't Harm Your Body for Looks",
+      "intro": "減重、醫美、健身這些追求外形的做法，哪些會傷身或觸法。",
+      "order": 10,
+      "group": "health",
+      "status": "planned"
+    },
+    {
+      "id": "crisis",
+      "title": "遭遇重大打擊之後",
+      "title_en": "After a Major Life Crisis",
+      "intro": "喪親、重病、失業、離婚之後最危險的時期，以及可以找誰幫忙。",
+      "order": 11,
+      "group": "health",
+      "status": "planned"
+    },
+    {
+      "id": "money",
+      "title": "不要浪費錢",
+      "title_en": "Don't Waste Money",
+      "intro": "借貸、保險、投資、消費最常見的花錢陷阱與消費者權利。",
+      "order": 12,
+      "group": "money",
+      "status": "planned"
+    },
+    {
+      "id": "tax",
+      "title": "報稅",
+      "title_en": "Filing Your Taxes",
+      "intro": "綜所稅與房屋相關稅怎麼報，才不會多繳或被罰。",
+      "order": 13,
+      "group": "money",
+      "status": "planned"
+    },
+    {
+      "id": "pension",
+      "title": "勞保、國保與勞退",
+      "title_en": "Labor Insurance, National Pension and Retirement",
+      "intro": "退休金與社會保險怎麼累積、怎麼領最划算，中斷了怎麼辦。",
+      "order": 14,
+      "group": "money",
+      "status": "planned"
+    },
+    {
+      "id": "broke",
+      "title": "沒錢的時候怎麼活",
+      "title_en": "When You're Broke",
+      "intro": "收入中斷或負債時，可以申請的救助、補貼與合法債務協商。",
+      "order": 15,
+      "group": "money",
+      "status": "planned"
+    },
+    {
+      "id": "fraud",
+      "title": "詐騙與 165",
+      "title_en": "Scams and the 165 Hotline",
+      "intro": "台灣最常見的詐騙手法、被騙後的黃金處理時間，以及別讓自己變成人頭帳戶。",
+      "order": 16,
+      "group": "money",
+      "status": "writing"
+    },
+    {
+      "id": "cybersecurity",
+      "title": "帳號與資訊安全",
+      "title_en": "Account and Information Security",
+      "intro": "保護帳號、手機、銀行卡與個資，被盜或外洩時怎麼處理。",
+      "order": 17,
+      "group": "money",
+      "status": "planned"
+    },
+    {
+      "id": "labor",
+      "title": "勞基法、資遣與職災",
+      "title_en": "Labor Rights, Severance and Workplace Injury",
+      "intro": "受僱者依勞基法該拿到的薪資、休假、資遣費與職災保障，以及權益受損時怎麼爭取。",
+      "order": 18,
+      "group": "work",
+      "status": "writing"
+    },
+    {
+      "id": "skills",
+      "title": "學什麼技能划算",
+      "title_en": "Which Skills Are Worth Learning",
+      "intro": "學歷、證照與職訓的投資報酬，以及有證據支持的學習方法。",
+      "order": 19,
+      "group": "work",
+      "status": "planned"
+    },
+    {
+      "id": "after-18",
+      "title": "十八歲之後有哪幾條路",
+      "title_en": "Paths After 18",
+      "intro": "成年後的兵役、升學、國考與就業選項，各自的門檻與代價。",
+      "order": 20,
+      "group": "work",
+      "status": "planned"
+    },
+    {
+      "id": "business",
+      "title": "創業與做生意",
+      "title_en": "Starting and Running a Business",
+      "intro": "開店、接案、開公司前要辦的登記、稅務與法律責任，別把家底賠進去。",
+      "order": 21,
+      "group": "work",
+      "status": "planned"
+    },
+    {
+      "id": "tech-law",
+      "title": "工程師容易踩的紅線",
+      "title_en": "Legal Red Lines for Engineers",
+      "intro": "寫程式、做網站、接案時容易觸犯的刑事與民事責任。",
+      "order": 22,
+      "group": "work",
+      "status": "planned"
+    },
+    {
+      "id": "legal-safety",
+      "title": "別把自己搭進去：法律與財產安全",
+      "title_en": "Protecting Yourself Legally",
+      "intro": "日常糾紛裡保護自己的法律工具與期限，別因不懂程序而吃虧。",
+      "order": 23,
+      "group": "law",
+      "status": "planned"
+    },
+    {
+      "id": "legal-redlines",
+      "title": "普通人容易踩的法律紅線",
+      "title_en": "Everyday Legal Red Lines",
+      "intro": "一般人可能不知不覺觸犯的刑事與行政罰規定。",
+      "order": 24,
+      "group": "law",
+      "status": "planned"
+    },
+    {
+      "id": "renting",
+      "title": "租屋",
+      "title_en": "Renting a Home",
+      "intro": "租屋前後的契約、押金、補貼與安全，房客和小房東各自的權利義務。",
+      "order": 25,
+      "group": "housing",
+      "status": "planned"
+    },
+    {
+      "id": "home-buying",
+      "title": "買房",
+      "title_en": "Buying a Home",
+      "intro": "買預售屋或成屋前該查的資料、契約重點與貸款稅務。",
+      "order": 26,
+      "group": "housing",
+      "status": "planned"
+    },
+    {
+      "id": "love-marriage",
+      "title": "戀愛和結婚",
+      "title_en": "Dating and Marriage",
+      "intro": "交往、結婚、離婚各階段的健康、財產與安全，以及法律怎麼保障你。",
+      "order": 27,
+      "group": "family",
+      "status": "planned"
+    },
+    {
+      "id": "pregnancy",
+      "title": "懷孕和生產",
+      "title_en": "Pregnancy and Childbirth",
+      "intro": "從備孕到產後，公費產檢、孕期安全與該辦的假和給付。",
+      "order": 28,
+      "group": "family",
+      "status": "planned"
+    },
+    {
+      "id": "newborn",
+      "title": "剛出生的孩子怎麼帶",
+      "title_en": "Caring for a Newborn",
+      "intro": "0–1 歲寶寶最重要的安全、疫苗與餵養重點，以及要立刻就醫的信號。",
+      "order": 29,
+      "group": "family",
+      "status": "planned"
+    },
+    {
+      "id": "school-kids",
+      "title": "上學以後的孩子",
+      "title_en": "School-Age Children",
+      "intro": "學齡兒童與青少年的視力、牙齒、心理與安全，以及校園問題怎麼處理。",
+      "order": 30,
+      "group": "family",
+      "status": "planned"
+    },
+    {
+      "id": "raising-kids",
+      "title": "養孩子的錢與時間",
+      "title_en": "The Cost of Raising Children",
+      "intro": "養孩子可領的津貼、可請的假，以及真實的金錢與時間成本。",
+      "order": 31,
+      "group": "family",
+      "status": "planned"
+    },
+    {
+      "id": "elders",
+      "title": "家裡有長輩",
+      "title_en": "Caring for Older Family Members",
+      "intro": "長輩的法律安排、醫療決定、防詐與健康，在出事前先處理好。",
+      "order": 32,
+      "group": "family",
+      "status": "planned"
+    },
+    {
+      "id": "ltc",
+      "title": "長照 2.0",
+      "title_en": "Long-Term Care 2.0",
+      "intro": "家人失能或失智時，怎麼申請長照服務、能用多少額度、要自付多少。",
+      "order": 33,
+      "group": "family",
+      "status": "planned"
+    },
+    {
+      "id": "disability",
+      "title": "身心障礙之後怎麼活",
+      "title_en": "Living with Disability",
+      "intro": "取得身障證明後可用的補助、就業與教育資源，以及照顧者的支持。",
+      "order": 34,
+      "group": "family",
+      "status": "planned"
+    },
+    {
+      "id": "after-death",
+      "title": "人走了以後要辦什麼",
+      "title_en": "After a Death in the Family",
+      "intro": "家人過世後要辦的證明、登記、給付、遺產與繼承，有哪些期限不能錯過。",
+      "order": 35,
+      "group": "family",
+      "status": "planned"
+    },
+    {
+      "id": "travel",
+      "title": "出國旅行與境外安全",
+      "title_en": "Travel and Safety Abroad",
+      "intro": "出國前、在國外與回國時的安全、醫療、保險與入境規定。",
+      "order": 36,
+      "group": "living",
+      "status": "planned"
+    },
+    {
+      "id": "study-abroad",
+      "title": "出國留學",
+      "title_en": "Studying Abroad",
+      "intro": "出國讀書前後要查的學歷認可、兵役、健保與當地身分規定。",
+      "order": 37,
+      "group": "living",
+      "status": "pending"
+    },
+    {
+      "id": "time-energy",
+      "title": "別浪費時間與精力",
+      "title_en": "Saving Time and Energy",
+      "intro": "睡眠、專注、拖延與辦事效率，把時間和精力花在值得的地方。",
+      "order": 38,
+      "group": "living",
+      "status": "planned"
+    },
+    {
+      "id": "leisure",
+      "title": "怎麼放鬆",
+      "title_en": "Relaxing Safely",
+      "intro": "娛樂場所與戶外活動的安全，以及有證據支持的減壓方式。",
+      "order": 39,
+      "group": "living",
+      "status": "planned"
+    },
+    {
+      "id": "myths",
+      "title": "反面清單",
+      "title_en": "Things That Look Worth It but Aren't",
+      "intro": "看起來划算、但證據不支持或其實有害的常見做法。",
+      "order": 40,
+      "group": "living",
+      "status": "planned"
+    }
+  ],
+  "items": [
+    {
+      "id": "fraud-001",
+      "chapter": "fraud",
+      "title": "接到可疑的電話、訊息或投資邀約，先打 165 反詐騙諮詢專線查證",
+      "cost": {
+        "money": "市話撥打免費；手機撥打時中華電信門號免費，其他電信每分鐘新臺幣 1 元（警政署常見問答，更新日期 2022-11-01）",
+        "time": "一通電話",
+        "effort": "低"
+      },
+      "plain": "覺得不對勁就先打 165 問，不用先確定是詐騙。已經被騙的人也可以直接打 165 報案，或在 165 全民防騙網先填好報案資料，再到派出所完成筆錄。",
+      "benefit": "警政署說明（更新日期 2022-11-01）：165 專線可以諮詢、檢舉或報案；也可以在 165 全民防騙網「我要報案」先預製筆錄，由專責人員轉介到民眾方便前往的派出所，接著完成筆錄。官方資料沒有提供「先打 165 能少損失多少錢」的數字，所以這裡不寫。",
+      "evidence": "A",
+      "caveats": "通話費率是警政署 2022-11-01 的說明，撥打時可能已經變動，以電信公司公告為準。網路預製筆錄之後，仍要到派出所完成手續。被騙之後要不要提告、怎麼追討款項，個案請諮詢律師或法律扶助等專業人士。",
+      "sources": [
+        {
+          "title": "內政部警政署常見問答：撥打165反詐騙諮詢專線需要通話費用嗎？受騙報案除可撥打165外，還有其他方式嗎？",
+          "url": "https://www.npa.gov.tw/ch/app/faq/view?module=faq&id=2144&serno=A1078837",
+          "type": "官方",
+          "checked": "2026-11-21"
+        },
+        {
+          "title": "內政部警政署 165 全民防騙網",
+          "url": "https://165.npa.gov.tw/",
+          "type": "官方",
+          "checked": "2026-11-21"
+        }
+      ],
+      "status": "draft",
+      "updated": "2026-11-21"
+    },
+    {
+      "id": "labor-001",
+      "chapter": "labor",
+      "title": "加班後可以選補休，但補休到期沒休完，雇主要照加班當天的標準付加班費",
+      "cost": {
+        "money": "不花錢",
+        "time": "確認公司約定的特休年度和自己的補休紀錄，約 10 分鐘",
+        "effort": "低"
+      },
+      "plain": "加班要換補休還是領加班費，要你自己願意、雇主也同意才算，雇主不能片面規定只能補休。補休到期或離職時還沒休完的時數，雇主要換算成加班費付給你。",
+      "benefit": "勞動部說明（「加班補休規定」更新日期 2024-12-31；「勞動基準法權益簡介」更新日期 2026-01-01）：平日延長工時前 2 小時加給 1/3 以上，再延長 2 小時加給 2/3 以上；休息日出勤前 2 小時另再加給 1又1/3，第 3 至 8 小時另再加給 1又2/3，第 9 至 12 小時另再加給 2又2/3。補休最晚要在勞雇雙方約定的特別休假年度末日前休完，不能再往後延；沒休完的時數，依加班當天的工資計算標準發給工資。",
+      "evidence": "A",
+      "caveats": "只適用受勞動基準法保障的勞工，自己的工作適不適用，可以問勞動部或地方勞工局。補休期限以勞雇雙方約定的特休年度為準（曆年制、週年制等）。法令可能修正，以全國法規資料庫的最新條文為準。和雇主有爭議時，個案請諮詢地方勞工局或律師。",
+      "sources": [
+        {
+          "title": "勞動部：加班補休規定",
+          "url": "https://www.mol.gov.tw/1607/28162/28166/28180/28198/28202/47031/post",
+          "type": "官方",
+          "checked": "2026-11-21"
+        },
+        {
+          "title": "勞動部：勞動基準法權益簡介",
+          "url": "https://www.mol.gov.tw/1607/28162/28166/28168/28170/28989/post",
+          "type": "官方",
+          "checked": "2026-11-21"
+        }
+      ],
+      "status": "draft",
+      "updated": "2026-11-21"
+    }
+  ]
+}
