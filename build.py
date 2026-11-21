@@ -15,6 +15,9 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parent
+# Dates in guide.json are Taiwan dates, so "today" is computed in Taipei time (UTC+8, no daylight saving),
+# whatever time zone the machine or GitHub Actions runner uses.
+TAIPEI = dt.timezone(dt.timedelta(hours=8), "Asia/Taipei")
 DATA = ROOT / "guide.json"
 PAGE = ROOT / "index.html"
 START, END = "<!-- GUIDE:START -->", "<!-- GUIDE:END -->"
@@ -41,6 +44,10 @@ ALLOWED_HOSTS = {
 
 # Simplified characters and mainland terms that should not appear (warning only; extend as needed).
 NON_TW_TERMS = ["视频", "质量", "信息", "软件", "网络", "设置", "数据", "这", "们", "说", "为", "时", "费"]
+
+
+def taipei_today():
+    return dt.datetime.now(TAIPEI).date()
 
 
 def nonempty_str(v):
@@ -71,7 +78,7 @@ def check_fields(obj, fields, where, errors):
 
 
 def validate(data, today=None):
-    today = today or dt.date.today()
+    today = today or taipei_today()
     errors, warnings = [], []
     if not isinstance(data, dict):
         return ["guide.json must be an object with groups, chapters and items"], []
