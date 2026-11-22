@@ -38,7 +38,7 @@ SLUG = r"[a-z]+(-[a-z0-9]+)*"
 # To allow a new site, add it here and explain in the pull request which agency runs it.
 ALLOWED_HOSTS = {
     "官方": ["gov.tw"],
-    "法規": ["law.moj.gov.tw", "laws.mol.gov.tw", "gov.tw"],
+    "法規": ["law.moj.gov.tw", "laws.mol.gov.tw", "gov.tw", "laws.gov.taipei"],  # laws.gov.taipei: 臺北市政府法務局「臺北市法規查詢系統」
     "期刊": ["doi.org", "pubmed.ncbi.nlm.nih.gov", "pmc.ncbi.nlm.nih.gov", "cochranelibrary.com"],
 }
 
