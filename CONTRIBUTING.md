@@ -14,6 +14,7 @@
 1. Fork 這個 repo，修改 `guide.json`。
 2. 新條目的 `id` 用「章節代號-三位數流水號」，接在該章最後一號之後；不要改動既有條目的 id。
 3. 新條目和修改過的條目，`status` 設為 `draft`，`updated` 填今天的日期（台灣時間）。經過第二個人對照來源查核後，才改成 `reviewed`。
+   - 例外：只調整標示或格式、不改變任何事實內容（數字、條件、來源、結論）的修改，不需要改回 draft，但 commit 訊息要寫明修改性質。
 4. 章節第一次有條目時，把該章的 `status` 從 `planned` 改成 `writing`。
 5. 執行 `python build.py`，確認沒有錯誤，並把更新後的 `index.html` 一起提交。
 6. 開 Pull Request，說明改了什麼、依據哪個來源。GitHub Actions 會自動跑 `python build.py --check`。
