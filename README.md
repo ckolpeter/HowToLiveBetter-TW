@@ -1,6 +1,6 @@
 # 台灣人生 CP 值指南
 
-**線上使用：** https://ckolpeter.github.io/HowToLiveBetter-TW/
+**線上使用：** https://cpguide.tw/
 
 依台灣法規與官方資料整理的生活建議，每條都寫明成本、效益、證據等級與可查證的來源。
 
