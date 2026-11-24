@@ -111,8 +111,12 @@ v0.1 已完成下列 5 章的第一版，共 83 條建議，其中 82 條已查�
 
 ```
 guide.json                 分組、章節與所有建議（要新增或修改內容請改這裡）
-build.py                   檢查 guide.json 格式，並把資料內嵌進 index.html
+build.py                   檢查 guide.json 格式，把資料與預先產生的條目內容寫進 index.html，並產生 sitemap.xml
 index.html                 網頁本體（資料已內嵌，可離線使用）
+sitemap.xml                給搜尋引擎的網站地圖（由 build.py 產生，請勿手改）
+robots.txt                 搜尋引擎爬取規則，並指向 sitemap.xml
+favicon.svg                網站圖示
+CNAME                      GitHub Pages 自訂網域 cpguide.tw
 docs/                      README 用的截圖與版本發布說明
 .github/workflows/         GitHub Actions：每次 push 和 PR 自動跑 build.py --check
 .github/ISSUE_TEMPLATE/    「建議新增條目」與「內容有誤回報」兩個表單
@@ -126,7 +130,7 @@ CHANGELOG.md               版本紀錄
 修改 `guide.json` 後執行（只需要 Python 3，不用裝套件）：
 
 ```bash
-python build.py          # 檢查並更新 index.html
+python build.py          # 檢查並更新 index.html 與 sitemap.xml
 python build.py --check  # 只檢查，不修改（GitHub Actions 用這個）
 ```
 

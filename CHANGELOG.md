@@ -2,6 +2,14 @@
 
 本專案的版本變更都記錄在這裡。條目數依當時的 `guide.json` 計算。
 
+## 未發布
+
+### 搜尋引擎優化（SEO）
+
+- 網頁標題與描述改寫，加上 canonical 網址、Open Graph / Twitter 分享預覽、結構化資料（Schema.org `WebSite`）與網站圖示。
+- `build.py` 會把條目內容預先寫進 `index.html`，不執行 JavaScript 的搜尋引擎與讀者也看得到全文；網頁載入後仍換成可搜尋、篩選的版本。
+- 新增 `robots.txt` 與 `sitemap.xml`（由 `build.py` 產生，`lastmod` 取最新條目的修改日期）。
+
 ## v0.1（2026-11-23）
 
 第一個公開版本。

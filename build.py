@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
-"""Validate guide.json and embed it into index.html so the page works offline.
+"""Validate guide.json, embed it into index.html so the page works offline, and write sitemap.xml.
+
+index.html also gets a pre-rendered copy of the tip list, so search engines and readers without
+JavaScript see the content; the page script replaces it with the interactive list on load.
 
 Usage:
-    python build.py          # validate, then update index.html
-    python build.py --check  # validate only; exit 1 if guide.json is invalid or index.html is out of date
+    python build.py          # validate, then update index.html and sitemap.xml
+    python build.py --check  # validate only; exit 1 if guide.json is invalid or index.html / sitemap.xml is out of date
 
 Only the Python standard library is used.
 """
@@ -20,7 +23,23 @@ ROOT = Path(__file__).resolve().parent
 TAIPEI = dt.timezone(dt.timedelta(hours=8), "Asia/Taipei")
 DATA = ROOT / "guide.json"
 PAGE = ROOT / "index.html"
+SITEMAP = ROOT / "sitemap.xml"
+SITE_URL = "https://cpguide.tw/"
 START, END = "<!-- GUIDE:START -->", "<!-- GUIDE:END -->"
+LIST_START, LIST_END = "<!-- LIST:START -->", "<!-- LIST:END -->"
+
+# Chinese labels for the pre-rendered list. Keep in sync with I18N.zh in index.html,
+# so the static copy matches what the page script draws on load.
+ZH = {
+    "evShort": {"A": "證據 A", "B": "證據 B", "C": "證據 C"},
+    "evTitle": {"A": "A：法律、官方制度或大型試驗", "B": "B：觀察性研究、官方統計", "C": "C：專家建議、證據有限"},
+    "draft": "待查核", "draftTitle": "草稿：內容尚未經第二人查核",
+    "costMoney": "花錢", "costTime": "花時間", "costEffort": "力氣",
+    "benefit": "具體數字", "caveats": "不適用或要注意的人", "sources": "來源",
+    "checked": "查證日期", "updated": "最後修改",
+    "status": {"planned": "規劃中", "writing": "撰寫中", "done": "完成", "pending": "待決定"},
+    "waiting": "還沒有內容的章節（點了可以看簡介）：",
+}
 
 GROUP_FIELDS = ["id", "title", "title_en", "order"]
 CHAPTER_FIELDS = ["id", "title", "title_en", "intro", "order", "group", "status"]
@@ -227,13 +246,95 @@ def validate(data, today=None):
     return errors, warnings
 
 
+def esc(s):
+    """Same escaping as esc() in the page script."""
+    table = {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}
+    return re.sub(r"[&<>\"']", lambda m: table[m.group()], "" if s is None else str(s))
+
+
+def status_chip(ch):
+    key = ch.get("status")
+    if key == "done" or key not in ZH["status"]:
+        return ""
+    return f'<span class="chip {esc(key)}">{esc(ZH["status"][key])}</span>'
+
+
+def card(it):
+    c = it.get("cost") or {}
+    srcs = "".join(
+        f'<li><a href="{esc(s["url"] if re.match(r"https://", s["url"], re.I) else "#")}" target="_blank" rel="noopener noreferrer">'
+        f'{esc(s["title"])}</a><div class="src-meta">{esc(s["type"])} · {esc(ZH["checked"])} {esc(s["checked"])}</div></li>'
+        for s in it.get("sources") or []
+    )
+    ev = it.get("evidence")
+    draft = f'<span class="draft" title="{esc(ZH["draftTitle"])}">{esc(ZH["draft"])}</span>' if it.get("status") == "draft" else ""
+    return (
+        f'<article class="card" id="{esc(it["id"])}">'
+        f'<div class="meta"><span class="ev ev-{esc(ev)}" title="{esc(ZH["evTitle"].get(ev))}">{esc(ZH["evShort"].get(ev, ev))}</span>'
+        f'{draft}<span class="id">{esc(it["id"])}</span></div>'
+        f'<h4>{esc(it["title"])}</h4>'
+        f'<p class="plain">{esc(it["plain"])}</p>'
+        f'<dl><dt>{esc(ZH["costMoney"])}</dt><dd>{esc(c.get("money"))}</dd>'
+        f'<dt>{esc(ZH["costTime"])}</dt><dd>{esc(c.get("time"))}</dd>'
+        f'<dt>{esc(ZH["costEffort"])}</dt><dd>{esc(c.get("effort"))}</dd></dl>'
+        f'<p class="section-label">{esc(ZH["benefit"])}</p><p class="block">{esc(it["benefit"])}</p>'
+        f'<p class="section-label">{esc(ZH["caveats"])}</p><p class="block caveats">{esc(it["caveats"])}</p>'
+        f'<p class="section-label">{esc(ZH["sources"])}</p><ol class="sources">{srcs}</ol>'
+        f'<p class="updated">{esc(ZH["updated"])} {esc(it["updated"])}</p>'
+        "</article>"
+    )
+
+
+def render_list(data):
+    """Static HTML of the tip list in its default state (Chinese, no filters), mirroring render() in the page script."""
+    groups = sorted(data["groups"], key=lambda g: g["order"])
+    chapters = sorted(data["chapters"], key=lambda c: c["order"])
+    html = ""
+    for g in groups:
+        section, waiting = "", []
+        for c in (c for c in chapters if c["group"] == g["id"]):
+            mine = [it for it in data["items"] if it["chapter"] == c["id"]]
+            if mine:
+                section += (
+                    f'<section class="chapter" id="ch-{esc(c["id"])}"><h3 class="chapter-title">{esc(c["title"])}{status_chip(c)}</h3>'
+                    f'<p class="intro">{esc(c["intro"])}</p>' + "".join(card(it) for it in mine) + "</section>"
+                )
+            else:
+                waiting.append(c)
+        if waiting:
+            section += f'<div class="waiting"><span class="waiting-label">{esc(ZH["waiting"])}</span>' + "".join(
+                f'<button type="button" class="ch-chip" id="ch-{esc(c["id"])}" data-ch="{esc(c["id"])}" title="{esc(c["intro"])}">'
+                f'{esc(c["title"])}{status_chip(c)}</button>'
+                for c in waiting
+            ) + "</div>"
+        if section:
+            html += f'<h2 class="group">{esc(g["title"])}</h2>' + section
+    return html
+
+
+def replace_block(page, start, end, block, name):
+    pattern = re.compile(re.escape(start) + r".*?" + re.escape(end), re.S)
+    if not pattern.search(page):
+        sys.exit(f"index.html is missing the {name}:START / {name}:END markers")
+    return pattern.sub(lambda _: f"{start}\n{block}\n{end}", page, count=1)
+
+
 def render(data, page):
     payload = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
-    block = f'{START}\n<script id="guide-data" type="application/json">{payload}</script>\n{END}'
-    pattern = re.compile(re.escape(START) + r".*?" + re.escape(END), re.S)
-    if not pattern.search(page):
-        sys.exit("index.html is missing the GUIDE:START / GUIDE:END markers")
-    return pattern.sub(lambda _: block, page)
+    page = replace_block(page, LIST_START, LIST_END, render_list(data), "LIST")
+    return replace_block(page, START, END, f'<script id="guide-data" type="application/json">{payload}</script>', "GUIDE")
+
+
+def render_sitemap(data):
+    """One URL (the site is a single page); lastmod is the newest item's updated date."""
+    lastmod = max((it["updated"] for it in data["items"]), default=None)
+    lastmod_tag = f"<lastmod>{lastmod}</lastmod>" if lastmod else ""
+    return (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        f"  <url><loc>{SITE_URL}</loc>{lastmod_tag}</url>\n"
+        "</urlset>\n"
+    )
 
 
 def main():
@@ -249,15 +350,19 @@ def main():
         sys.exit(1)
     page = PAGE.read_text(encoding="utf-8")
     new = render(data, page)
+    sitemap = render_sitemap(data)
+    old_sitemap = SITEMAP.read_text(encoding="utf-8") if SITEMAP.exists() else None
     summary = f"{len(data['chapters'])} chapters, {len(data['items'])} items"
     if "--check" in sys.argv:
-        if new != page:
-            print("index.html is out of date. Run: python build.py")
+        stale = [name for name, ok in (("index.html", new == page), ("sitemap.xml", sitemap == old_sitemap)) if not ok]
+        if stale:
+            print(f"{' and '.join(stale)} out of date. Run: python build.py")
             sys.exit(1)
-        print(f"OK: {summary}, index.html is up to date")
+        print(f"OK: {summary}, index.html and sitemap.xml are up to date")
         return
     PAGE.write_text(new, encoding="utf-8")
-    print(f"Embedded {summary} into index.html")
+    SITEMAP.write_text(sitemap, encoding="utf-8", newline="\n")
+    print(f"Embedded {summary} into index.html and wrote sitemap.xml")
 
 
 if __name__ == "__main__":
